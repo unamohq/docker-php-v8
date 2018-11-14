@@ -1,6 +1,6 @@
 FROM unamo/docker-php
 
-ENV BUILD_DEPS wget unzip gcc make autoconf build-essential
+ENV BUILD_DEPS gcc make autoconf build-essential
 RUN apt-get update \
     && mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
     && apt-get install -y $BUILD_DEPS libglib2.0-dev
