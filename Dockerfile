@@ -1,11 +1,10 @@
 FROM unamo/docker-php
 
 ARG V8_VERSION=6.8.104
-ARG BUILD_DEPS="gcc make autoconf build-essential"
 
 RUN apt-get update \
     && mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
-    && apt-get install -y ${BUILD_DEPS} libglib2.0-dev patchelf
+    && apt-get install -y libglib2.0-dev patchelf
 
 RUN mkdir /tmp/depot_tools \
     && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /tmp/depot_tools
@@ -34,7 +33,6 @@ RUN mkdir -p /tmp/pear \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable v8js
 
-RUN apt-get autoremove -y ${BUILD_DEPS}
-RUN rm -r /tmp/depot_tools
+RUN rm -r /tmp/*
 
 VOLUME ["/app"]
